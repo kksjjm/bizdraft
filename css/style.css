@@ -1,0 +1,349 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #f26531;
+}
+
+/* Main Card */
+.main-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    height: 75vh;
+}
+
+.main-heading {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.highlight {
+    color: #f26531;
+    font-weight: bold;
+}
+
+.sub-text {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #6e6e6e;
+}
+
+/* Mascot */
+.mascot {
+    width: 120px;
+    margin: 20px auto;
+    display: block;
+}
+
+/* Action Buttons */
+.action-button {
+    display: inline-block;
+    background-color: #f26531;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+}
+
+.secondary-button {
+    background-color: #eee;
+    color: #666;
+}
+
+/* User Type Selection */
+.user-type-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+}
+
+.user-type {
+    text-align: center;
+    cursor: pointer;
+    width: 120px;
+}
+
+.user-type img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.user-type-label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.user-type.selected img {
+    border: 3px solid #f26531;
+}
+
+.user-type.selected .user-type-label {
+    color: #f26531;
+}
+
+/* Input Field */
+.input-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.info-text {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+    margin: 10px 0;
+}
+
+/* Progress Bar */
+.progress-bar {
+    height: 15px;
+    background-color: #eee;
+    border-radius: 10px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 90%;
+    background-color: #f26531;
+    border-radius: 10px;
+    animation: progress 2s ease-in-out;
+}
+
+@keyframes progress {
+    from { width: 0; }
+    to { width: 90%; }
+}
+
+/* Loading Screen */
+.progress-text {
+    color: #f26531;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.redirect-text {
+    font-size: 12px;
+    color: #888;
+    margin-top: 30px;
+}
+
+/* Progress Circle (Results page) */
+.progress-section {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.progress-circle-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.progress-circle { 
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    /* 시작점을 위쪽(0deg)으로 변경 */
+    background: conic-gradient(
+        from 360deg,
+        #f26531 calc(var(--percentage, 0) * 1%),
+        #eee calc(var(--percentage, 0) * 1%)
+    );
+    transform: scaleX(-1);
+}
+
+.progress-circle > * {
+    transform: scaleX(-1);
+}
+
+.progress-circle::after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    background: white;
+}
+
+.progress-percentage, .funding-title {
+    position: relative;
+    z-index: 1;
+}
+
+.progress-circle::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 15px solid #eee;
+    transform: rotate(45deg);
+}
+
+.progress-percentage {
+    font-size: 45px;
+    font-weight: bold;
+    color: #f26531;
+}
+
+.progress-label {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.expected-amount {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.amount-label {
+    font-size: 14px;
+    color: #666;
+}
+
+.amount-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #f26531;
+    margin: 10px 10px;
+}
+
+.status-message {
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+/* Funding List */
+.funding-section {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #f26531;
+}
+
+.small-text {
+    font-size: 12px;
+    color: #888;
+    font-weight: normal;
+}
+
+.funding-list {
+    margin-top: 20px;
+}
+
+.funding-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.funding-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #f3f3f3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.funding-details {
+    flex-grow: 1;
+}
+
+.funding-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.funding-amount {
+    font-size: 16px;
+    color: #f26531;
+    font-weight: bold;
+}
+
+.apply-button {
+    display: block;
+    background-color: #f26531;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+}

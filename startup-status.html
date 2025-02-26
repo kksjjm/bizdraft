@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bizdraft - 창업여부 선택</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">Bizdraft</div>
+        </header>
+        
+        <!-- Main Card -->
+        <div class="main-card">
+            <div class="main-heading">숨어있는<br>내 <span class="highlight">창업지원금</span> 찾기</div>
+            <div class="sub-text"><span class="highlight">창업여부</span>를 알려주세요!</div>
+            
+            <div class="user-type-container">
+                <div class="user-type" onclick="selectType(this, '예비창업자')">
+                    <img src="images/startup-icon.png" alt="예비창업자">
+                    <div class="user-type-label">예비창업자</div>
+                </div>
+                <div class="user-type" onclick="selectType(this, '기창업자')">
+                    <img src="images/business-icon.png" alt="기창업자">
+                    <div class="user-type-label">기창업자</div>
+                </div>
+            </div>
+            
+            <a href="business-idea.html" class="action-button" id="nextButton">다음</a>
+        </div>
+    </div>
+    
+    <script src="js/main.js"></script>
+    <script>
+        let selectedType = null;
+        const nextButton = document.getElementById('nextButton');
+        
+        function selectType(element, type) {
+            // Remove selected class from all
+            document.querySelectorAll('.user-type').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked element
+            element.classList.add('selected');
+            selectedType = type;
+            
+            // Change button style
+            nextButton.classList.remove('secondary-button');
+        }
+    </script>
+</body>
+</html>
