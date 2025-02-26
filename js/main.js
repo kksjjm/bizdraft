@@ -62,21 +62,20 @@ function analyzeBusinessIdea(startupStatus, businessIdea) {
     
     // 예비창업자/기창업자 기본 점수 설정
     if (startupStatus === '예비창업자') {
-        analysis.successRate = 43.2;  
-        analysis.totalAmount = 53000000;
+        analysis.successRate = (Math.random() * (52 - 43) + 43).toFixed(1);
+        analysis.totalAmount = (Math.random() * (67 - 48) + 48).toFixed(0) * 1000000;
         analysis.fundingList = [
-            {name: '예비창업패키지', amount: 53000000},
-            {name: '데이터바우처 사업', amount: 32000000}
+            {name: '예비창업패키지', amount: analysis.totalAmount},
+            {name: '데이터바우처 사업', amount: analysis.totalAmount-4000000}
         ];
-    } else if (startupStatus === '기창업자') {  // 명시적으로 기창업자 조건 추가
-        analysis.successRate = 52.4; 
-        analysis.totalAmount = 76000000;
+    } else if (startupStatus === '기창업자') {
+        analysis.successRate = (Math.random() * (61 - 54) + 54).toFixed(1);
+        analysis.totalAmount = (Math.random() * (93 - 83) + 83).toFixed(0) * 1000000;;
         analysis.fundingList = [
-            {name: '창업도약패키지', amount: 76000000},
-            {name: '기술개발사업', amount: 82000000}
+            {name: '창업도약패키지', amount: analysis.totalAmount},
+            {name: '기술개발사업', amount: analysis.totalAmount+6000000}
         ];
     }
-    
     // 사업 아이디어가 있는 경우에만 키워드 분석 수행
     if (businessIdea && businessIdea.trim() !== "") {
         // 사업 아이디어 키워드 분석
@@ -162,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (percentageElement && progressCircle) {
         const targetPercentage = parseInt(percentageElement.textContent, 10);
-        const duration = 2000;
+        const duration = 1000;
         let start = null;
         
         function animate(timestamp) {
