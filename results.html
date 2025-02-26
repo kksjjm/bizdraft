@@ -32,7 +32,7 @@
           <div class="status-message">내 예상 지원금은</div>
           <div>
             <span class="status-message">약</span>
-            <span class="amount-value">5천만원</span>
+            <span class="amount-value">5</span>
           </div>
           <div class="status-message">
             <span class="highlight">보완이</span>필요하지만<br />
@@ -54,7 +54,7 @@
               <img
                 src="images/ri_building-fill.png"
                 alt="Icon"
-                style="width: 30px; height: 30px;"
+                style="width: 30px; height: 30px"
               />
             </div>
             <div class="funding-details">
@@ -68,7 +68,7 @@
               <img
                 src="images/ri_building-fill.png"
                 alt="Icon"
-                style="width: 30px; height: 30px;"
+                style="width: 30px; height: 30px"
               />
             </div>
             <div class="funding-details">
@@ -83,5 +83,57 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const formData = getUserData("bizdraft_form_data");
+        console.log("Results page - Received data:", formData);
+
+        // startupStatus만 필수로 확인
+        if (!formData || !formData.startupStatus) {
+          console.error("Missing required data for results page");
+          alert("창업 여부 정보가 없습니다. 처음부터 다시 시작합니다.");
+          window.location.href = "startup-status.html";
+          return;
+        }
+
+        // 결과 표시 함수 호출
+        displayResults();
+
+        // 결과 페이지 진행률 원형 애니메이션
+        const progressCircle = document.querySelector(".progress-circle");
+        const percentageElement = document.querySelector(
+          ".progress-percentage span"
+        );
+
+        if (percentageElement && progressCircle) {
+          const targetPercentage = parseInt(percentageElement.textContent, 10);
+          animatePercentage(targetPercentage);
+        }
+      });
+
+      // 진행률 애니메이션 함수
+      function animatePercentage(targetPercentage) {
+        const progressCircle = document.querySelector(".progress-circle");
+        const duration = 2000;
+        let start = null;
+
+        function animate(timestamp) {
+          if (!start) start = timestamp;
+          const elapsed = timestamp - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const currentPercentage = progress * targetPercentage;
+
+          // 원형 프로그레스 업데이트 (CSS 변수 사용)
+          progressCircle.style.setProperty("--percentage", currentPercentage);
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+    </script>
   </body>
 </html>

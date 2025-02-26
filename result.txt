@@ -1,0 +1,600 @@
+business-idea.html
+```
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bizdraft - 사업 아이디어 입력</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <div class="logo">Bizdraft</div>
+      </header>
+
+      <!-- Main Card -->
+      <div class="main-card">
+        <div class="main-heading">
+          숨어있는<br />내 <span class="highlight">창업지원금</span> 찾기
+        </div>
+        <div class="sub-text">
+          <span class="highlight">사업(창업)아이디어</span>를 알려주세요!
+        </div>
+
+        <input
+          type="text"
+          class="input-field"
+          placeholder="사업(창업) 아이디어를 간단하게 적어주세요."
+          onkeyup="validateInput(this)"
+        />
+        <!-- <div class="input-helper">
+                💡 키워드 예시: AI, 빅데이터, IoT, 환경, 복지 등
+            </div> -->
+        <a href="loading.html" class="action-button">창업지원금 얼마인지 알아보기</a>
+
+        <div class="action-button secondary-button">
+          추가 아이디어가 필요하신가요? 제안 받아보세요
+        </div>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+      document
+        .querySelector(".action-button")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const businessIdea = document.querySelector(".input-field").value;
+          const previousData = getUserData("bizdraft_form_data");
+
+          if (!previousData || !previousData.startupStatus) {
+            console.log("Missing startup status");
+            window.location.href = "startup-status.html";
+            return;
+          }
+
+          const formData = {
+            startupStatus: previousData.startupStatus,
+            businessIdea: businessIdea,
+          };
+
+          console.log("Saving business idea data:", formData);
+          saveUserData("bizdraft_form_data", formData);
+
+          window.location.href = "loading.html";
+        });
+    </script>
+  </body>
+</html>
+
+```
+
+index.html
+```
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bizdraft - 메인 화면</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">Bizdraft</div>
+        </header>
+        
+        <!-- Main Card -->
+        <div class="main-card">
+            <div class="main-heading">2분부터 4월, 정부지원사업 신청시기</div>
+            <div class="sub-text">1인 최대금액 <span class="highlight">1억원+</span></div>
+            <div class="sub-text">내가 받을 수 있는 <span class="highlight">지원금</span>을 확인해보세요!</div>
+            <img src="images/mascot.png" alt="Mascot" class="mascot">
+            <a href="startup-status.html" class="action-button">내 지원금 확인하기</a>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+loading.html
+```
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bizdraft - 분석 중</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <div class="logo">Bizdraft</div>
+      </header>
+
+      <!-- Main Card -->
+      <div class="main-card" style="text-align: center">
+        <div class="main-heading">
+          <span class="highlight">창업여부</span>와
+          <span class="highlight">사업 아이디어</span><br />
+          토대로 분석하고 있어요
+        </div>
+
+        <div class="sub-text">
+          지금 서비스를 나가면 분석이 중단됩니다<br />
+          잠시만 기다려주세요
+        </div>
+
+        <img src="images/mascot.png" alt="Mascot" class="mascot" />
+
+        <div class="progress-text">
+          아직 분석 중이에요...<br />
+          90% 진행 중
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+
+        <div class="redirect-text">
+          잠시 후 결과 페이지로 자동 이동합니다...
+        </div>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/loading.js"></script>
+  </body>
+</html>
+
+```
+
+results.html
+```
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bizdraft - 지원금 결과</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <div class="logo">Bizdraft</div>
+      </header>
+
+      <!-- Progress Circle Section -->
+      <div class="progress-section">
+        <div class="progress-circle-container">
+          <div class="progress-circle">
+            <div class="funding-title">합격 확률</div>
+            <div class="progress-percentage">
+              <span class="progress-percentage">78</span>%
+            </div>
+          </div>
+        </div>
+
+        <div class="expected-amount">
+          <div class="status-message">내 예상 지원금은</div>
+          <div>
+            <span class="status-message">약</span>
+            <span class="amount-value">5천만원</span>
+          </div>
+          <div class="status-message">
+            <span class="highlight">보완이</span>필요하지만<br />
+            <span class="highlight">선정 가능성</span>이 있어요!
+          </div>
+          <a href="#" class="action-button" style="width: auto">지원금 보기</a>
+        </div>
+      </div>
+
+      <!-- Funding List Section -->
+      <div class="funding-section">
+        <div class="section-title">
+          받을 수 있는 지원사업 <span class="small-text">(예상)</span>
+        </div>
+
+        <div class="funding-list">
+          <div class="funding-item">
+            <div class="funding-icon primary">
+              <img
+                src="images/ri_building-fill.png"
+                alt="Icon"
+                style="width: 30px; height: 30px"
+              />
+            </div>
+            <div class="funding-details">
+              <div class="funding-title">예비창업패키지</div>
+            </div>
+            <div class="funding-amount">43,000,000원</div>
+          </div>
+
+          <div class="funding-item">
+            <div class="funding-icon secondary">
+              <img
+                src="images/ri_building-fill.png"
+                alt="Icon"
+                style="width: 30px; height: 30px"
+              />
+            </div>
+            <div class="funding-details">
+              <div class="funding-title">데이터바우처 사업</div>
+            </div>
+            <div class="funding-amount">12,000,000원</div>
+          </div>
+        </div>
+
+        <a href="#" class="apply-button">지원사업 신청하기</a>
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        displayResults();
+      });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const formData = getUserData("bizdraft_form_data");
+            console.log("Results page - Received data:", formData);
+            
+            if (!formData || !formData.startupStatus || !formData.businessIdea) {
+                console.log("Missing required data");
+                window.location.href = "startup-status.html";
+                return;
+            }
+            
+            displayResults();
+        });
+    </script>
+  </body>
+</html>
+
+```
+
+startup-status.html
+```
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bizdraft - 창업여부 선택</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <div class="logo">Bizdraft</div>
+      </header>
+
+      <!-- Main Card -->
+      <div class="main-card">
+        <div class="main-heading">
+          숨어있는<br />내 <span class="highlight">창업지원금</span> 찾기
+        </div>
+        <div class="sub-text">
+          <span class="highlight">창업여부</span>를 알려주세요!
+        </div>
+
+        <div class="user-type-container">
+          <div class="user-type" onclick="selectType(this, '예비창업자')">
+            <img src="images/startup-icon.png" alt="예비창업자" />
+            <div class="user-type-label">예비창업자</div>
+          </div>
+          <div class="user-type" onclick="selectType(this, '기창업자')">
+            <img src="images/business-icon.png" alt="기창업자" />
+            <div class="user-type-label">기창업자</div>
+          </div>
+        </div>
+
+        <a
+          href="business-idea.html"
+          class="action-button secondary-button"
+          id="nextButton"
+          >다음</a
+        >
+      </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+      let selectedType = null;
+      const nextButton = document.getElementById("nextButton");
+
+      function selectType(element, type) {
+        // Remove selected class from all
+        document.querySelectorAll(".user-type").forEach((el) => {
+          el.classList.remove("selected");
+        });
+
+        // Add selected class to clicked element
+        element.classList.add("selected");
+        selectedType = type;
+
+        // Change button style
+        nextButton.classList.remove("secondary-button");
+
+        // 선택된 값 저장
+        const formData = {
+          startupStatus: type,
+          businessIdea: null,
+        };
+        saveUserData("bizdraft_form_data", formData);
+        console.log("Saved startup status:", formData);
+      }
+
+      // 다음 버튼 클릭 이벤트
+      nextButton.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        if (!selectedType) {
+          console.log("No type selected");
+          return;
+        }
+
+        const formData = getUserData("bizdraft_form_data");
+        if (formData && formData.startupStatus) {
+          console.log("Moving to business-idea with data:", formData);
+          window.location.href = "business-idea.html";
+        }
+      });
+    </script>
+  </body>
+</html>
+
+```
+
+js\loading.js
+```
+// 로딩 화면 관리 스크립트
+
+// 결과 페이지로 자동 이동
+document.addEventListener('DOMContentLoaded', function() {
+    const progressFill = document.querySelector('.progress-fill');
+    
+    // 데이터 존재 여부 확인
+    const formData = getUserData("bizdraft_form_data");
+    console.log("Loading page - Form data:", formData);
+    
+    if (!formData || !formData.startupStatus || !formData.businessIdea) {
+        console.log("Required data missing, redirecting to start page");
+        window.location.href = "startup-status.html";
+        return;
+    }
+    
+    let progress = 0;
+    const progressText = document.querySelector('.progress-text');
+    
+    const updateProgress = setInterval(function() {
+        progress += 5;
+        if (progress <= 90) {
+            progressText.innerHTML = `아직 분석 중이에요...<br>${progress}% 진행 중`;
+        } else {
+            clearInterval(updateProgress);
+        }
+    }, 150);
+    
+    // 3초 후 결과 페이지로 자동 이동
+    setTimeout(function() {
+        console.log("Redirecting to results with data:", formData);
+        window.location.href = "results.html";
+    }, 3000);
+});
+```
+
+js\main.js
+```
+// 공통 JavaScript 함수
+
+// 사용자 세션 데이터 관리
+function saveUserData(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
+function getUserData(key) {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : null;
+}
+
+// 페이지 간 데이터 전송
+function storeFormData() {
+    // 기존 데이터 가져오기
+    const existingData = getUserData('bizdraft_form_data') || {};
+
+    // 현재 페이지에 창업 여부 선택 요소가 있다면 사용하고, 없으면 기존 값 유지
+    const userTypeElement = document.querySelector('.user-type.selected');
+    const startupStatus = userTypeElement 
+        ? userTypeElement.querySelector('.user-type-label').textContent 
+        : existingData.startupStatus || null;
+
+    // 사업 아이디어 입력값은 해당 요소가 있을 경우 가져오고, 없으면 기존 값 사용
+    const inputField = document.querySelector('.input-field');
+    const businessIdea = inputField 
+        ? inputField.value 
+        : existingData.businessIdea || null;
+
+    const formData = {
+        startupStatus: startupStatus,
+        businessIdea: businessIdea
+    };
+
+    saveUserData('bizdraft_form_data', formData);
+}
+
+// 사업 분석 함수
+function analyzeBusinessIdea(startupStatus, businessIdea) {
+    let analysis = {
+        successRate: 0,
+        totalAmount: 0,
+        fundingList: []
+    };
+    
+    // 예비창업자/기창업자 기본 점수 설정
+    if (startupStatus === '예비창업자') {
+        analysis.successRate = 50;  // 예비창업자는 50%
+        analysis.totalAmount = 50000000;
+        analysis.fundingList = [
+            {name: '예비창업패키지', amount: 43000000},
+            {name: '데이터바우처 사업', amount: 12000000}
+        ];
+    } else if (startupStatus === '기창업자') {  // 명시적으로 기창업자 조건 추가
+        analysis.successRate = 95;  // 기창업자는 95%
+        analysis.totalAmount = 70000000;
+        analysis.fundingList = [
+            {name: '창업도약패키지', amount: 50000000},
+            {name: '기술개발사업', amount: 20000000}
+        ];
+    }
+    
+    // 사업 아이디어 키워드 분석
+    const techKeywords = ['AI', '인공지능', '빅데이터', 'IoT', '블록체인'];
+    const socialKeywords = ['환경', '친환경', '사회문제', '복지'];
+    
+    techKeywords.forEach(keyword => {
+        if (businessIdea.includes(keyword)) {
+            analysis.successRate += 5;
+            analysis.totalAmount += 10000000;
+        }
+    });
+    
+    socialKeywords.forEach(keyword => {
+        if (businessIdea.includes(keyword)) {
+            analysis.successRate += 3;
+            analysis.totalAmount += 5000000;
+        }
+    });
+    
+    return analysis;
+}
+
+// 결과 페이지 데이터 표시 함수
+function displayResults() {
+    const formData = getUserData('bizdraft_form_data');
+    console.log('Retrieved form data:', formData);
+    
+    if (!formData) return;
+    
+    const analysis = analyzeBusinessIdea(formData.startupStatus, formData.businessIdea);
+    console.log('Analysis result:', analysis);
+    
+    // 결과 페이지 요소 업데이트
+    document.querySelector('.progress-percentage span').textContent = analysis.successRate;
+    document.querySelector('.amount-value').textContent = 
+        `${Math.floor(analysis.totalAmount / 10000)}천만원`;
+    
+    // 지원사업 목록 업데이트
+    const fundingList = document.querySelector('.funding-list');
+    fundingList.innerHTML = analysis.fundingList.map(fund => `
+        <div class="funding-item">
+            <div class="funding-icon primary">
+                <img src="images/ri_building-fill.png" alt="Icon" style="width: 30px; height: 30px;">
+            </div>
+            <div class="funding-details">
+                <div class="funding-title">${fund.name}</div>
+            </div>
+            <div class="funding-amount">${fund.amount.toLocaleString()}원</div>
+        </div>
+    `).join('');
+}
+
+// 진행률 관련 스크립트
+document.addEventListener('DOMContentLoaded', function() {
+    // 만약 현재 페이지에 사업 아이디어 입력 필드가 있다면(즉, business-idea 페이지라면) 글로벌 이벤트 리스너를 등록하지 않음
+    if (!document.querySelector('.input-field')) {
+        const nextButtons = document.querySelectorAll('.action-button');
+        nextButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                storeFormData();
+            });
+        });
+    }
+    
+    const progressCircle = document.querySelector('.progress-circle');
+    const percentageElement = document.querySelector('.progress-percentage span');
+    
+    if (percentageElement && progressCircle) {
+        const targetPercentage = parseInt(percentageElement.textContent, 10);
+        const duration = 2000;
+        let start = null;
+        
+        function animate(timestamp) {
+            if (!start) start = timestamp;
+            const elapsed = timestamp - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const currentPercentage = progress * targetPercentage;
+            progressCircle.style.setProperty('--percentage', currentPercentage);
+            
+            if (progress < 1) {
+                requestAnimationFrame(animate);
+            }
+        }
+        
+        requestAnimationFrame(animate);
+    }
+});
+
+// 페이지 이동 시 데이터 저장
+document.addEventListener('DOMContentLoaded', function() {
+    // 다음 버튼 클릭 시 데이터 저장
+    const nextButtons = document.querySelectorAll('.action-button');
+    
+    nextButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            storeFormData();
+        });
+    });
+    
+    // 이전 페이지에서 저장된 데이터 로드
+    const formData = getUserData('bizdraft_form_data');
+    
+    // 폼에 데이터 채우기
+    if (formData) {
+        // 창업여부 페이지
+        if (document.querySelectorAll('.user-type').length > 0) {
+            document.querySelectorAll('.user-type').forEach(type => {
+                if (type.querySelector('.user-type-label').textContent === formData.startupStatus) {
+                    type.classList.add('selected');
+                    document.getElementById('nextButton').classList.remove('secondary-button');
+                }
+            });
+        }
+        
+        // 사업 아이디어 페이지
+        if (document.querySelector('.input-field') && formData.businessIdea) {
+            document.querySelector('.input-field').value = formData.businessIdea;
+        }
+    }
+});
+```
+

@@ -1,32 +1,101 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bizdraft - 사업 아이디어 입력</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="logo">Bizdraft</div>
-        </header>
-        
-        <!-- Main Card -->
-        <div class="main-card">
-            <div class="main-heading">숨어있는<br>내 <span class="highlight">창업지원금</span> 찾기</div>
-            <div class="sub-text"><span class="highlight">사업(창업)아이디어</span>를 알려주세요!</div>
-            
-            <input type="text" class="input-field" placeholder="사업(창업) 아이디어를 간단하게 적어주세요.">
-            
-            <a href="loading.html" class="action-button">찾아보기</a>
+      <!-- Header -->
+      <header>
+        <div class="logo">Bizdraft</div>
+      </header>
 
-            <div class="action-button secondary-button">추가 아이디어가 필요하신가요? 제안 받아보기</div>
+      <!-- Main Card -->
+      <div class="main-card">
+        <div class="main-heading">
+          숨어있는<br />내 <span class="highlight">창업지원금</span> 찾기
         </div>
+        <div class="sub-text">
+          <span class="highlight">사업(창업)아이디어</span>를 알려주세요!
+        </div>
+
+        <input
+          type="text"
+          class="input-field"
+          placeholder="사업(창업) 아이디어를 간단하게 적어주세요."
+          onkeyup="validateInput(this)"
+        />
+        <!-- <div class="input-helper">
+                💡 키워드 예시: AI, 빅데이터, IoT, 환경, 복지 등
+            </div> -->
+        <a href="loading.html" class="action-button"
+          >창업지원금 얼마인지 알아보기</a
+        >
+
+        <div class="action-button secondary-button">
+          추가 아이디어가 필요하신가요? 제안 받아보세요
+        </div>
+      </div>
     </div>
-    
+
     <script src="js/main.js"></script>
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 이전 페이지에서 전달받은 데이터 확인
+        const previousData = getUserData("bizdraft_form_data");
+
+        if (!previousData || !previousData.startupStatus) {
+          console.log(
+            "Missing startup status, redirecting to startup status page"
+          );
+          window.location.href = "startup-status.html";
+          return;
+        }
+
+        // 입력 필드 초기 검증
+        validateInput(document.querySelector(".input-field"));
+
+        // 버튼 이벤트 리스너 설정
+        document
+          .querySelector(".action-button")
+          .addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const businessIdea = document
+              .querySelector(".input-field")
+              .value.trim();
+
+            // 데이터 업데이트
+            const formData = {
+              startupStatus: previousData.startupStatus,
+              businessIdea: businessIdea,
+            };
+
+            console.log("Saving business idea data:", formData);
+            saveUserData("bizdraft_form_data", formData);
+
+            // 로딩 페이지로 이동
+            window.location.href = "loading.html";
+          });
+      });
+
+      // 입력 검증 함수
+      function validateInput(inputField) {
+        const actionButton = document.querySelector(".action-button");
+
+        if (inputField.value.trim() !== "") {
+          actionButton.classList.add("active");
+        } else {
+          actionButton.classList.remove("active");
+        }
+      }
+    </script>
+  </body>
 </html>

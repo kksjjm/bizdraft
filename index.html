@@ -23,5 +23,20 @@
             <a href="startup-status.html" class="action-button">내 지원금 확인하기</a>
         </div>
     </div>
+    
+    <script src="js/main.js"></script>
+    <script>
+        // 메인 페이지 로드 시 이전 데이터 초기화
+        document.addEventListener("DOMContentLoaded", function() {
+            // 애플리케이션 시작 시 기존 데이터 초기화
+            resetUserData();
+            
+            // 버튼 클릭 시 startup-status로 이동
+            document.querySelector(".action-button").addEventListener("click", function(e) {
+                e.preventDefault();
+                window.location.href = "startup-status.html";
+            });
+        });
+    </script>
 </body>
 </html>
