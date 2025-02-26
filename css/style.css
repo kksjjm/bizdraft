@@ -29,7 +29,7 @@ header {
 .logo {
     font-size: 28px;
     font-weight: bold;
-    color: #f26531;
+    color: #EF5B24;
 }
 
 /* Main Card */
@@ -50,7 +50,7 @@ header {
 }
 
 .highlight {
-    color: #f26531;
+    color: #EF5B24;
     font-weight: bold;
 }
 
@@ -62,7 +62,7 @@ header {
 
 /* Mascot */
 .mascot {
-    width: 120px;
+    width: 300px;
     margin: 20px auto;
     display: block;
 }
@@ -70,7 +70,7 @@ header {
 /* Action Buttons */
 .action-button {
     display: inline-block;
-    background-color: #f26531;
+    background-color: #EF5B24;
     color: white;
     padding: 12px 30px;
     border-radius: 5px;
@@ -97,14 +97,16 @@ header {
 }
 
 .user-type {
+    margin-top: 20px;
+    margin-bottom: 50px;
     text-align: center;
     cursor: pointer;
     width: 120px;
 }
 
 .user-type img {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     margin-bottom: 10px;
     border-radius: 5px;
 }
@@ -115,11 +117,11 @@ header {
 }
 
 .user-type.selected img {
-    border: 3px solid #f26531;
+    border: 3px solid #EF5B24;
 }
 
 .user-type.selected .user-type-label {
-    color: #f26531;
+    color: #EF5B24;
 }
 
 /* Input Field */
@@ -151,7 +153,7 @@ header {
 .progress-fill {
     height: 100%;
     width: 90%;
-    background-color: #f26531;
+    background-color: #EF5B24;
     border-radius: 10px;
     animation: progress 2s ease-in-out;
 }
@@ -163,7 +165,7 @@ header {
 
 /* Loading Screen */
 .progress-text {
-    color: #f26531;
+    color: #EF5B24;
     font-weight: bold;
     margin: 15px 0;
 }
@@ -200,7 +202,7 @@ header {
     /* 시작점을 위쪽(0deg)으로 변경 */
     background: conic-gradient(
         from 360deg,
-        #f26531 calc(var(--percentage, 0) * 1%),
+        #EF5B24 calc(var(--percentage, 0) * 1%),
         #eee calc(var(--percentage, 0) * 1%)
     );
     transform: scaleX(-1);
@@ -241,7 +243,7 @@ header {
 .progress-percentage {
     font-size: 45px;
     font-weight: bold;
-    color: #f26531;
+    color: #EF5B24;
 }
 
 .progress-label {
@@ -263,7 +265,7 @@ header {
 .amount-value {
     font-size: 32px;
     font-weight: bold;
-    color: #f26531;
+    color: #EF5B24;
     margin: 10px 10px;
 }
 
@@ -286,7 +288,7 @@ header {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #f26531;
+    color: #EF5B24;
 }
 
 .small-text {
@@ -310,12 +312,19 @@ header {
 .funding-icon {
     width: 40px;
     height: 40px;
-    background-color: #f3f3f3;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 15px;
+}
+
+.funding-icon.primary {
+    background-color: #EF5B24; /* EF5B24 with opacity */
+}
+
+.funding-icon.secondary {
+    background-color: #F4B183; /* gray with opacity */
 }
 
 .funding-details {
@@ -329,13 +338,13 @@ header {
 
 .funding-amount {
     font-size: 16px;
-    color: #f26531;
+    color: #EF5B24;
     font-weight: bold;
 }
 
 .apply-button {
     display: block;
-    background-color: #f26531;
+    background-color: #EF5B24;
     color: white;
     padding: 15px 30px;
     border-radius: 5px;
