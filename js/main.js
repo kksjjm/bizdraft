@@ -62,15 +62,15 @@ function analyzeBusinessIdea(startupStatus, businessIdea) {
     
     // 예비창업자/기창업자 기본 점수 설정
     if (startupStatus === '예비창업자') {
-        analysis.successRate = (Math.random() * (52 - 43) + 43).toFixed(1);
-        analysis.totalAmount = (Math.random() * (67 - 48) + 48).toFixed(0) * 1000000;
+        analysis.successRate = parseFloat((Math.random() * (52 - 43) + 43).toFixed(1));
+        analysis.totalAmount = parseInt((Math.random() * (67 - 48) + 48).toFixed(0) * 1000000);
         analysis.fundingList = [
             {name: '예비창업패키지', amount: analysis.totalAmount},
             {name: '데이터바우처 사업', amount: analysis.totalAmount-4000000}
         ];
     } else if (startupStatus === '기창업자') {
-        analysis.successRate = (Math.random() * (61 - 54) + 54).toFixed(1);
-        analysis.totalAmount = (Math.random() * (93 - 83) + 83).toFixed(0) * 1000000;;
+        analysis.successRate = parseFloat((Math.random() * (61 - 54) + 54).toFixed(1));
+        analysis.totalAmount = parseInt((Math.random() * (93 - 83) + 83).toFixed(0) * 1000000);
         analysis.fundingList = [
             {name: '창업도약패키지', amount: analysis.totalAmount},
             {name: '기술개발사업', amount: analysis.totalAmount+6000000}
@@ -84,18 +84,21 @@ function analyzeBusinessIdea(startupStatus, businessIdea) {
         
         techKeywords.forEach(keyword => {
             if (businessIdea.includes(keyword)) {
-                analysis.successRate += 3.1;
+                analysis.successRate = parseFloat(analysis.successRate) + 3.1;
                 analysis.totalAmount += 10000000;
             }
         });
         
         socialKeywords.forEach(keyword => {
             if (businessIdea.includes(keyword)) {
-                analysis.successRate += 2.3;
+                analysis.successRate = parseFloat(analysis.successRate) + 2.3;
                 analysis.totalAmount += 5000000;
             }
         });
     }
+    
+    // 최종 값 포맷팅
+    analysis.successRate = analysis.successRate.toFixed(1);
     
     return analysis;
 }
